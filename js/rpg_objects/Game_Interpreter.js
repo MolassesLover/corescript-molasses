@@ -1053,8 +1053,10 @@ Game_Interpreter.prototype.command205 = function() {
     if (this._character) {
         this._character.forceMoveRoute(this._params[1]);
         var eventInfo = JsonEx.makeDeepCopy(this._eventInfo);
-        eventInfo.line = this._index + 1;
-        this._character.setCallerEventInfo(eventInfo);
+        if(! eventInfo == null) {
+            eventInfo.line = this._index + 1;
+            this._character.setCallerEventInfo(eventInfo);
+        }
         if (this._params[1].wait) {
             this.setWaitMode('route');
         }
